@@ -20,10 +20,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import album1 from "@/assets/album-1.jpg";
-import album2 from "@/assets/album-2.jpg";
-import album3 from "@/assets/album-3.jpg";
-import userAvatar from "@/assets/user-avatar.jpg";
+import album1 from "@/public/assets/album-1.jpg";
+import album2 from "@/public/assets/album-2.jpg";
+import album3 from "@/public/assets/album-3.jpg";
+import userAvatar from "@/public/assets/user-avatar.jpg";
 
 interface SearchResult {
   type: "song" | "creator";
