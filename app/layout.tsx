@@ -1,7 +1,6 @@
 'use client'
 
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import { WalletProvider } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
 import Providers from "@/providers/privyProvider";

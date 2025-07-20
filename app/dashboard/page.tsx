@@ -62,11 +62,11 @@ export default function Dashboard() {
   return (
       <div className="min-h-screen watercolor-bg overflow-hidden">
         {/* Ambient background effects */}
-        <div className="fixed inset-0 opacity-30">
+        {/* <div className="fixed inset-0 opacity-30">
           <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-radial from-yellow-400/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-40 right-40 w-80 h-80 bg-gradient-radial from-purple-400/15 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-blue-400/10 to-transparent rounded-full blur-3xl animate-pulse delay-2000"></div>
-        </div>
+        </div> */}
 
         <div className="relative z-10 flex min-h-screen">
           {/* Sidebar */}
@@ -96,18 +96,6 @@ export default function Dashboard() {
 
           {/* Main Content */}
           <div className="flex-1 p-6 space-y-6">
-            {/* Header */}
-            <div className="flex justify-between items-center">
-              <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
-              <Button
-                  variant="ghost"
-                  size="icon"
-                  className="w-12 h-12 rounded-xl text-gray-600 hover:text-yellow-500 hover:bg-yellow-500/10 liquid-glow relative"
-              >
-                <Bell className="w-6 h-6" />
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full pulse-golden"></div>
-              </Button>
-            </div>
 
             {/* Now Playing */}
             <Card className="glass-panel rounded-3xl p-8 glow-golden float">

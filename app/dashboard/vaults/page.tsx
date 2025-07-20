@@ -5,7 +5,6 @@ import { ArrowLeft, Wallet } from "lucide-react";
 import Link from "next/link";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
 import { MyTokensTab } from "@/components/vault/MyTokensTab";
 import { RevenueVaultsTab } from "@/components/vault/RevenueVaultsTab";
 import { ClaimableTab } from "@/components/vault/ClaimableTab";
@@ -13,11 +12,6 @@ import { ClaimableTab } from "@/components/vault/ClaimableTab";
 
 export default function Vaults() {
     const [activeTab, setActiveTab] = useState("my-tokens");
-    const [walletConnected, setWalletConnected] = useState(false);
-
-    const connectWallet = () => {
-        setWalletConnected(true);
-    };
 
     return (
         <div className="min-h-screen serene-bg">
@@ -30,15 +24,6 @@ export default function Vaults() {
                         <ArrowLeft className="w-5 h-5" />
                         <span>Back to Dashboard</span>
                     </Link>
-
-                    <Button
-                        onClick={connectWallet}
-                        variant="default" // ensure your Button component handles variant
-                        className={`glow-golden ${walletConnected ? "bg-emerald-600" : ""}`}
-                    >
-                        <Wallet className="w-5 h-5 mr-2" />
-                        {walletConnected ? "0x742d...8a1b" : "Connect Wallet"}
-                    </Button>
                 </div>
 
                 <div className="text-center mb-8">
