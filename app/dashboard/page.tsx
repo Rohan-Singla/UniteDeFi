@@ -1,4 +1,5 @@
-import { useState } from "react";
+'use client'
+
 import {
   Headphones,
   Search,
@@ -15,10 +16,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import heroAlbum from "@/assets/hero-album.jpg";
-import album1 from "@/assets/album-1.jpg";
-import album2 from "@/assets/album-2.jpg";
-import album3 from "@/assets/album-3.jpg";
+import heroAlbum from "@/public/assets/hero-album.jpg";
+import album1 from "@/public/assets/album-1.jpg";
+import album2 from "@/public/assets/album-2.jpg";
+import album3 from "@/public/assets/album-3.jpg";
 import { useRouter } from "next/navigation";
 import { useMusicPlayer } from "@/components/contexts/MusicContext";
 import Image from "next/image";
@@ -32,7 +33,7 @@ interface Song {
   price: string;
 }
 
-const Dashboard = () => {
+export default function Dashboard () {
   const navigate = useRouter();
   const { currentSong, isPlaying, progress, setCurrentSong, togglePlayPause, playNext, playPrevious } = useMusicPlayer();
 
@@ -45,11 +46,11 @@ const Dashboard = () => {
 
   const sidebarItems = [
     { icon: Headphones, label: "Dashboard", path: "/dashboard", active: true },
-    { icon: Search, label: "Search", path: "/search" },
-    { icon: Grid3X3, label: "Vaults", path: "/vaults" },
-    { icon: User, label: "Profile", path: "/profile" },
-    { icon: Brain, label: "Governance", path: "/governance" },
-    { icon: Settings, label: "Preferences", path: "/settings" },
+    { icon: Search, label: "Search", path: "/dashboard/search" },
+    { icon: Grid3X3, label: "Vaults", path: "/dashboard/vaults" },
+    { icon: User, label: "Profile", path: "/dashboard/profile" },
+    { icon: Brain, label: "Governance", path: "/dashboard/governance" },
+    { icon: Settings, label: "Preferences", path: "/dashboard/settings" },
   ];
 
   const handleSongClick = (song: Song) => {
