@@ -80,11 +80,6 @@ export default function Governance() {
     // Implementation would handle voting logic
   };
 
-  const connectWallet = () => {
-    setWalletConnected(true);
-    // Implementation would handle wallet connection
-  };
-
   return (
       <div className="min-h-screen serene-bg">
         <div className="container mx-auto px-6 py-8">
@@ -98,13 +93,6 @@ export default function Governance() {
               <span>Back to Dashboard</span>
             </button>
 
-            <Button
-                onClick={connectWallet}
-                className={`glow-golden ${walletConnected ? 'bg-emerald-600' : ''}`}
-            >
-              <Wallet className="w-5 h-5 mr-2" />
-              {walletConnected ? "0x742d...8a1b" : "Connect Wallet"}
-            </Button>
           </div>
 
           {/* Title */}

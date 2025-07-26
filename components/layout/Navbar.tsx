@@ -20,7 +20,12 @@ const Navbar = () => {
 
     return (
         <nav className="w-full flex items-center justify-between px-6 py-4 bg-gray-100 text-black">
-            <div className="text-xl font-bold">Dashboard</div>
+            <div>
+                <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
+                <p className="text-slate-600">Discover and collect amazing music NFTs</p>
+            </div>
+
+            
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <ConnectButton label='Connect SUI Wallet' className='bg-black text-white' style={{ marginRight: '10px' }} />
                 {connected && (

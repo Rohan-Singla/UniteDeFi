@@ -11,7 +11,7 @@ const mockTokens = [
     tokensOwned: 150,
     currentValue: "$2,450",
     change: "+12.5%",
-    image: "/src/assets/album-1.jpg"
+    image: "/src/public/assets/album-1.jpg"
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const mockTokens = [
     tokensOwned: 75,
     currentValue: "$1,825",
     change: "+8.2%",
-    image: "/src/assets/album-2.jpg"
+    image: "/src/public/assets/album-2.jpg"
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const mockTokens = [
     tokensOwned: 200,
     currentValue: "$3,100",
     change: "+15.7%",
-    image: "/src/assets/album-3.jpg"
+    image: "/src/public/assets/album-3.jpg"
   }
 ];
 

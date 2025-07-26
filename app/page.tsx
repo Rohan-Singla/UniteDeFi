@@ -3,11 +3,16 @@
 import { useEvmWallet } from '@/modules/ethWallet'
 import { useSuiWallet } from '@/modules/suiWallet'
 import { ConnectButton } from '@suiet/wallet-kit'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const { address: evmAddress, authenticated, login, logout } = useEvmWallet()
   const { name, address: suiAddress, publicKey, connected, disconnect } = useSuiWallet()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (!connected) return
@@ -17,6 +22,8 @@ export default function Home() {
       publicKey,
     })
   }, [connected])
+
+  if (!mounted) return null // prevents hydration mismatch
 
   return (
     <header
@@ -35,6 +42,7 @@ export default function Home() {
           </span>
         )}
       </div>
+
       {authenticated && <button onClick={logout}>Logout EVM</button>}
       {connected && <button onClick={disconnect}>Logout SUI</button>}
 

@@ -15,7 +15,7 @@ const mockVaults = [
     investors: 142,
     utilization: 78,
     protocol: "Cetus Finance",
-    image: "/src/assets/album-1.jpg"
+    image: "/src/public/assets/album-1.jpg"
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const mockVaults = [
     investors: 89,
     utilization: 65,
     protocol: "Sui Lend",
-    image: "/src/assets/album-2.jpg"
+    image: "/src/public/assets/album-2.jpg"
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const mockVaults = [
     investors: 203,
     utilization: 84,
     protocol: "Scallop",
-    image: "/src/assets/album-3.jpg"
+    image: "/src/public/assets/album-3.jpg"
   }
 ];
 
