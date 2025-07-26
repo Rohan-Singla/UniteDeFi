@@ -38,10 +38,6 @@ export default function Vaults() {
                             <span>Back to Dashboard</span>
                         </Link>
 
-                        <Button className="bg-blue-600 hover:bg-blue-700">
-                            <Wallet className="w-4 h-4 mr-2" />
-                            Connect Wallet
-                        </Button>
                     </div>
 
                     {/* Page Title */}

@@ -79,10 +79,6 @@ const ListenerProfile = () => {
     },
   ]
 
-  const handleConnectWallet = () => {
-    setIsWalletConnected(!isWalletConnected)
-  }
-
   const copyToClipboard = () => {
     navigator.clipboard.writeText(userData.walletAddress)
   }
@@ -103,17 +99,6 @@ const ListenerProfile = () => {
             <span>Back to Dashboard</span>
           </Button>
 
-          <Button
-            onClick={handleConnectWallet}
-            className={`flex items-center space-x-2 ${
-              isWalletConnected
-                ? "bg-green-600 hover:bg-green-700"
-                : "bg-blue-600 hover:bg-blue-700"
-            }`}
-          >
-            <Wallet className="w-4 h-4" />
-            <span>{isWalletConnected ? "Connected" : "Connect Wallet"}</span>
-          </Button>
         </div>
 
         {/* Profile Header */}

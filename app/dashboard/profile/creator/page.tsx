@@ -24,6 +24,7 @@ import {
 } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
+import Sidebar from "@/components/Sidebar"
 
 const CreatorProfile = () => {
   const { id } = useParams()
@@ -101,6 +102,8 @@ const CreatorProfile = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="flex">
+    <Sidebar/>
       <div className="container mx-auto px-8 py-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -113,15 +116,6 @@ const CreatorProfile = () => {
             <span>Back to Dashboard</span>
           </Button>
 
-          <Button
-            onClick={handleConnectWallet}
-            className={`flex items-center space-x-2 ${
-              isWalletConnected ? "bg-green-600 hover:bg-green-700" : "bg-blue-600 hover:bg-blue-700"
-            }`}
-          >
-            <Wallet className="w-4 h-4" />
-            <span>{isWalletConnected ? "Connected" : "Connect Wallet"}</span>
-          </Button>
         </div>
 
         {/* Profile Header */}
@@ -447,6 +441,7 @@ const CreatorProfile = () => {
             </Tabs>
           </CardContent>
         </Card>
+      </div>
       </div>
 
       {/* Upload Success Modal */}

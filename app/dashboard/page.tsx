@@ -87,25 +87,7 @@ export default function Dashboard() {
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col">
-          {/* Header */}
-          <header className="bg-white border-b border-slate-200 px-8 py-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
-                <p className="text-slate-600">Discover and collect amazing music NFTs</p>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Button variant="outline" size="sm" className="text-slate-600 bg-transparent">
-                  <Volume2 className="w-4 h-4 mr-2" />
-                  Connect Wallet
-                </Button>
-                <Button variant="ghost" size="icon" className="relative">
-                  <Bell className="w-5 h-5" />
-                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
-                </Button>
-              </div>
-            </div>
-          </header>
+    
 
           {/* Content */}
           <main className="flex-1 p-8 space-y-8 overflow-auto">
