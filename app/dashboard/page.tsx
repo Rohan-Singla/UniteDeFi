@@ -1,247 +1,330 @@
-'use client'
+"use client"
 
 import {
   Headphones,
-  Search,
   Grid3X3,
-  User,
-  Brain,
-  Settings,
   Play,
   Pause,
   SkipBack,
   SkipForward,
   Bell,
-  Router
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import heroAlbum from "@/public/assets/hero-album.jpg";
-import album1 from "@/public/assets/album-1.jpg";
-import album2 from "@/public/assets/album-2.jpg";
-import album3 from "@/public/assets/album-3.jpg";
-import { useRouter } from "next/navigation";
-import { useMusicPlayer } from "@/components/contexts/MusicContext";
-import Image from "next/image";
+  Volume2,
+  Heart,
+  Share2,
+  TrendingUp,
+} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Separator } from "@/components/ui/separator"
+import { useRouter } from "next/navigation"
+import { useMusicPlayer } from "@/components/contexts/MusicContext"
+import Image from "next/image"
+import Sidebar from "@/components/Sidebar"
 
 interface Song {
-  id: string;
-  title: string;
-  artist: string;
-  album: string;
-  cover: string;
-  price: string;
+  id: string
+  title: string
+  artist: string
+  album: string
+  cover: string
+  price: string
 }
 
-export default function Dashboard () {
-  const navigate = useRouter();
-  const { currentSong, isPlaying, progress, setCurrentSong, togglePlayPause, playNext, playPrevious } = useMusicPlayer();
-
+export default function Dashboard() {
+  const navigate = useRouter()
+  const { currentSong, isPlaying, progress, setCurrentSong, togglePlayPause, playNext, playPrevious } = useMusicPlayer()
 
   const discoverSongs: Song[] = [
-    { id: "1", title: "Liquid Dreams", artist: "Aurora Synth", album: "Golden Waves", cover: album1, price: "0.05 SUI" },
-    { id: "2", title: "Digital Flow", artist: "Neon Pulse", album: "Cyber Realm", cover: album2, price: "0.08 SUI" },
-    { id: "3", title: "Ethereal Mist", artist: "Cloud Walker", album: "Sky Gardens", cover: album3, price: "0.03 SUI" },
-  ];
-
-  const sidebarItems = [
-    { icon: Headphones, label: "Dashboard", path: "/dashboard", active: true },
-    { icon: Search, label: "Search", path: "/dashboard/search" },
-    { icon: Grid3X3, label: "Vaults", path: "/dashboard/vaults" },
-    { icon: User, label: "Profile", path: "/dashboard/profile" },
-    { icon: Brain, label: "Governance", path: "/dashboard/governance" },
-    { icon: Settings, label: "Preferences", path: "/dashboard/settings" },
-  ];
-
+    {
+      id: "1",
+      title: "Liquid Dreams",
+      artist: "Aurora Synth",
+      album: "Golden Waves",
+      cover: "/placeholder.svg?height=200&width=200",
+      price: "0.05 SUI",
+    },
+    {
+      id: "2",
+      title: "Digital Flow",
+      artist: "Neon Pulse",
+      album: "Cyber Realm",
+      cover: "/placeholder.svg?height=200&width=200",
+      price: "0.08 SUI",
+    },
+    {
+      id: "3",
+      title: "Ethereal Mist",
+      artist: "Cloud Walker",
+      album: "Sky Gardens",
+      cover: "/placeholder.svg?height=200&width=200",
+      price: "0.03 SUI",
+    },
+    {
+      id: "4",
+      title: "Neon Nights",
+      artist: "Synth Wave",
+      album: "Retro Future",
+      cover: "/placeholder.svg?height=200&width=200",
+      price: "0.07 SUI",
+    },
+  ]
   const handleSongClick = (song: Song) => {
-    setCurrentSong(song);
-  };
+    setCurrentSong(song)
+  }
 
   const handleCurrentSongClick = () => {
     if (currentSong) {
-      navigate.push(`/music/${currentSong.id}`);
+      navigate.push(`/music/${currentSong.id}`)
     }
-  };
+  }
 
   return (
-    <div className="min-h-screen watercolor-bg overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="flex min-h-screen">
 
-      <div className="relative z-10 flex min-h-screen">
-        {/* Left Sidebar */}
-        <div className="w-20 glass-panel m-4 rounded-2xl p-4 flex flex-col items-center space-y-6 float">
-          {sidebarItems.map((item, index) => (
-            <div key={item.label} className="relative group">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => navigate.push(item.path)}
-                className={`w-12 h-12 rounded-xl transition-all duration-300 ${item.active
-                    ? "text-yellow-500 bg-yellow-500/10 glow-golden"
-                    : "text-gray-600 hover:text-yellow-500 hover:bg-yellow-500/5"
-                  } liquid-glow`}
-              >
-                <item.icon className="w-6 h-6" />
-              </Button>
-
-              {/* Tooltip */}
-              <div className="absolute left-16 top-1/2 transform -translate-y-1/2 px-3 py-1 bg-black/80 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
-                {item.label}
-              </div>
-            </div>
-          ))}
-        </div>
+        <Sidebar />
 
         {/* Main Content */}
-        <div className="flex-1 p-6 space-y-6">
-          {/* Header with Notification */}
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="w-12 h-12 rounded-xl text-gray-600 hover:text-yellow-500 hover:bg-yellow-500/10 liquid-glow relative"
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="bg-white border-b border-slate-200 px-8 py-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
+                <p className="text-slate-600">Discover and collect amazing music NFTs</p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Button variant="outline" size="sm" className="text-slate-600 bg-transparent">
+                  <Volume2 className="w-4 h-4 mr-2" />
+                  Connect Wallet
+                </Button>
+                <Button variant="ghost" size="icon" className="relative">
+                  <Bell className="w-5 h-5" />
+                  <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+                </Button>
+              </div>
+            </div>
+          </header>
+
+          {/* Content */}
+          <main className="flex-1 p-8 space-y-8 overflow-auto">
+            {/* Now Playing Section */}
+            <Card
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white border-0 cursor-pointer hover:shadow-lg transition-shadow"
+              onClick={handleCurrentSongClick}
             >
-              <Bell className="w-6 h-6" />
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-500 rounded-full pulse-golden"></div>
-            </Button>
-          </div>
-
-          {/* Now Playing Card */}
-          <Card
-            className="glass-panel rounded-3xl p-8 glow-golden float cursor-pointer"
-            onClick={handleCurrentSongClick}
-          >
-            <div className="flex items-center space-x-8">
-              <div className="relative">
-                <Image
-                  src={currentSong?.cover || heroAlbum}
-                  alt="Current Song"
-                  className="w-32 h-32 rounded-2xl object-cover shadow-lg"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent"></div>
-              </div>
-
-              <div className="flex-1 space-y-4">
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-1">
-                    {currentSong?.title || "Cosmic Journey"}
-                  </h2>
-                  <p className="text-gray-600">
-                    {currentSong?.artist || "Stellar Harmonics"}
-                  </p>
-                </div>
-
-                <div className="flex items-center justify-center space-x-6">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      playPrevious();
-                    }}
-                    className="w-12 h-12 rounded-full hover:bg-yellow-500/10 hover:text-yellow-500 liquid-glow"
-                  >
-                    <SkipBack className="w-6 h-6" />
-                  </Button>
-
-                  <Button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      togglePlayPause();
-                    }}
-                    className="w-16 h-16 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white shadow-lg glow-golden"
-                  >
-                    {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
-                  </Button>
-
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      playNext();
-                    }}
-                    className="w-12 h-12 rounded-full hover:bg-yellow-500/10 hover:text-yellow-500 liquid-glow"
-                  >
-                    <SkipForward className="w-6 h-6" />
-                  </Button>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="space-y-2">
-                  <div className="relative w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="absolute left-0 top-0 h-full bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full transition-all duration-300"
-                      style={{ width: `${progress}%` }}
-                    ></div>
-                    <div
-                      className="absolute w-4 h-4 bg-yellow-500 rounded-full shadow-lg pulse-golden transform -translate-y-1"
-                      style={{ left: `calc(${progress}% - 8px)` }}
-                    ></div>
+              <CardContent className="p-8">
+                <div className="flex items-center space-x-8">
+                  <div className="relative">
+                    <Image
+                      src={currentSong?.cover || "/placeholder.svg?height=120&width=120&query=music album cover"}
+                      alt="Current Song"
+                      width={120}
+                      height={120}
+                      className="rounded-2xl shadow-lg"
+                    />
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent"></div>
                   </div>
-                  <div className="flex justify-between text-sm text-gray-500">
-                    <span>1:23</span>
-                    <span>3:45</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Card>
 
-          {/* Discover Carousel */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800">Discover New Music</h2>
-            <div className="flex space-x-6 overflow-x-auto pb-4">
-              {discoverSongs.map((song, index) => (
-                <Card
-                  key={song.id}
-                  className="min-w-[280px] glass-panel rounded-2xl p-6 hover:scale-105 transition-all duration-300 cursor-pointer group float"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                  onClick={() => navigate.push(`/music/${song.id}`)}
-                >
-                  <div className="space-y-4">
-                    <div className="relative">
-                      <img
-                        src={song.cover}
-                        alt={song.title}
-                        className="w-full aspect-square rounded-xl object-cover"
-                      />
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Button
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleSongClick(song);
-                          }}
-                          className="w-full bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30"
-                        >
-                          <Play className="w-4 h-4 mr-2" />
-                          Play Now
-                        </Button>
-                      </div>
+                  <div className="flex-1 space-y-6">
+                    <div>
+                      <Badge variant="secondary" className="mb-2 bg-white/20 text-white border-white/30">
+                        Now Playing
+                      </Badge>
+                      <h2 className="text-3xl font-bold mb-2">{currentSong?.title || "Cosmic Journey"}</h2>
+                      <p className="text-blue-100 text-lg">{currentSong?.artist || "Stellar Harmonics"}</p>
                     </div>
 
+                    {/* Player Controls */}
+                    <div className="flex items-center space-x-6">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          playPrevious()
+                        }}
+                        className="w-12 h-12 rounded-full hover:bg-white/20 text-white"
+                      >
+                        <SkipBack className="w-6 h-6" />
+                      </Button>
+
+                      <Button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          togglePlayPause()
+                        }}
+                        className="w-16 h-16 rounded-full bg-white text-blue-600 hover:bg-blue-50 shadow-lg"
+                      >
+                        {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
+                      </Button>
+
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          playNext()
+                        }}
+                        className="w-12 h-12 rounded-full hover:bg-white/20 text-white"
+                      >
+                        <SkipForward className="w-6 h-6" />
+                      </Button>
+
+                      <Separator orientation="vertical" className="h-8 bg-white/30" />
+
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="w-10 h-10 rounded-full hover:bg-white/20 text-white"
+                      >
+                        <Heart className="w-5 h-5" />
+                      </Button>
+
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="w-10 h-10 rounded-full hover:bg-white/20 text-white"
+                      >
+                        <Share2 className="w-5 h-5" />
+                      </Button>
+                    </div>
+
+                    {/* Progress Bar */}
                     <div className="space-y-2">
-                      <h3 className="font-semibold text-gray-800">{song.title}</h3>
-                      <p className="text-sm text-gray-600">{song.artist}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg font-bold text-yellow-600">{song.price}</span>
-                        <Button
-                          size="sm"
-                          className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-white glow-golden liquid-glow"
-                        >
-                          Buy Token
-                        </Button>
+                      <div className="relative w-full h-2 bg-white/20 rounded-full overflow-hidden">
+                        <div
+                          className="absolute left-0 top-0 h-full bg-white rounded-full transition-all duration-300"
+                          style={{ width: `${progress}%` }}
+                        ></div>
+                      </div>
+                      <div className="flex justify-between text-sm text-blue-100">
+                        <span>1:23</span>
+                        <span>3:45</span>
                       </div>
                     </div>
                   </div>
-                </Card>
-              ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Discover Section */}
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900">Discover New Music</h2>
+                  <p className="text-slate-600">Fresh tracks from emerging artists</p>
+                </div>
+                <Button variant="outline">View All</Button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {discoverSongs.map((song) => (
+                  <Card
+                    key={song.id}
+                    className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-slate-200 hover:border-blue-300"
+                    onClick={() => navigate.push(`/music/${song.id}`)}
+                  >
+                    <CardContent className="p-6">
+                      <div className="space-y-4">
+                        <div className="relative">
+                          <Image
+                            src={song.cover || "/placeholder.svg"}
+                            alt={song.title}
+                            width={200}
+                            height={200}
+                            className="w-full aspect-square rounded-xl object-cover"
+                          />
+                          <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <Button
+                              size="sm"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleSongClick(song)
+                              }}
+                              className="w-full bg-white/90 text-slate-900 hover:bg-white"
+                            >
+                              <Play className="w-4 h-4 mr-2" />
+                              Play Now
+                            </Button>
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <div>
+                            <h3 className="font-semibold text-slate-900 truncate">{song.title}</h3>
+                            <p className="text-sm text-slate-600 truncate">{song.artist}</p>
+                          </div>
+
+                          <div className="flex items-center justify-between">
+                            <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                              {song.price}
+                            </Badge>
+                            <Button
+                              size="sm"
+                              className="bg-blue-600 hover:bg-blue-700"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                // Handle buy token logic
+                              }}
+                            >
+                              Buy Token
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
-          </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="border-slate-200">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-slate-600">Total Collection</p>
+                    <Grid3X3 className="w-4 h-4 text-slate-400" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-slate-900">24 NFTs</div>
+                  <p className="text-xs text-slate-500">+3 this week</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-slate-200">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-slate-600">Total Value</p>
+                    <TrendingUp className="w-4 h-4 text-slate-400" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-slate-900">2.4 SUI</div>
+                  <p className="text-xs text-slate-500">+12% this month</p>
+                </CardContent>
+              </Card>
+
+              <Card className="border-slate-200">
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-slate-600">Listening Time</p>
+                    <Headphones className="w-4 h-4 text-slate-400" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold text-slate-900">47h 23m</div>
+                  <p className="text-xs text-slate-500">This week</p>
+                </CardContent>
+              </Card>
+            </div>
+          </main>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

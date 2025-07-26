@@ -27,7 +27,7 @@ interface SearchResult {
   followers?: string;
 }
 
-const Search = () => {
+export default function Search ()  {
   const navigate = useRouter();
   const { setCurrentSong } = useMusicPlayer();
   const [searchQuery, setSearchQuery] = useState("");
