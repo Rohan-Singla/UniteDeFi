@@ -12,7 +12,7 @@ const mockClaimable = [
     yieldType: "Lending Rewards",
     daysAccrued: 7,
     status: "ready",
-    image: "/src/assets/album-1.jpg"
+    image: "/src/public/assets/album-1.jpg"
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const mockClaimable = [
     yieldType: "Staking Rewards",
     daysAccrued: 5,
     status: "ready",
-    image: "/src/assets/album-2.jpg"
+    image: "/src/public/assets/album-2.jpg"
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const mockClaimable = [
     yieldType: "LP Rewards",
     daysAccrued: 3,
     status: "pending",
-    image: "/src/assets/album-3.jpg"
+    image: "/src/public/assets/album-3.jpg"
   }
 ];
 
